@@ -1,0 +1,36 @@
+{
+    "productos":[
+        {
+            "id":1,
+            "nombre":"Limon con semilla",
+            "precioUno":26.82,
+            "precioDos":"39.9",
+            "img":"../img/limon.png",
+            "descuento":"32% dto"
+        },
+        {
+            "id":2,
+            "nombre":"Tomate",
+            "precioUno":21.79,
+            "precioDos":"32.9",
+            "img":"../img/tomate.png",
+            "descuento":"32% dcto"
+        },
+        {
+            "id":3,
+            "nombre":"Aguacate Hass",
+            "precioUno":56.80,
+            "precioDos":"69.9",
+            "img":"../img/aguacate.png",
+            "descuento":"18% dto"
+        },
+        {
+            "id":4,
+            "nombre":"Nopal limpio",
+            "precioUno":25.80,
+            "precioDos":"29.0",
+            "img":"../img/nopal.png",
+            "descuento":"32% dcto"
+        }
+    ]
+}

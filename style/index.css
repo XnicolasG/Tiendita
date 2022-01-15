@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@1,600&family=Inter:wght@300&family=Luxurious+Script&family=M+PLUS+Code+Latin&family=Merriweather&family=Mohave:wght@600&family=Montagu+Slab&family=Nunito:ital@1&family=Open+Sans:wght@300&family=Poppins:wght@300&family=Roboto:ital,wght@0,300;0,400;1,100;1,400&display=swap');*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(255, 255, 255);
+    font-family: 'calibri';
+}
+
+/* ======================NAV BAR==================== */
+
+#logo{
+    width: 80px;
+    padding: 0.3%;
+    margin-left: 10%;
+} 
+
+#carrito{
+    color: white;
+}
+#ubi{
+    color: tomato;
+}
+.car{
+    padding: 3px;
+    height: 90%;
+    background-color: rgb(66, 202, 93);
+    border-radius: 5px;
+    
+}
+
+select{
+    border: none;
+    padding: 2px auto;
+    background: transparent;
+    margin-right: auto;
+    border-right: 1.5px solid grey;
+}
+/* ==============PopUp carrito============= */
+#body #pagar{
+    background-color: rgb(66, 202, 93);
+    color: white;
+    margin-left: 60%;
+}
+/* ========================Banner============== */
+
+#cont{
+    width: 90%;
+    margin: auto;
+    margin-top: 0.5% !important;    
+}
+#cont img{
+    max-width: 90%;
+    display: block;
+    height: auto;
+    margin: auto;
+    align-items: center;
+}
+/* ==============CARDS MAIN=================== */
+#main{
+    width: 80%;
+    margin: auto;
+    padding: .2%;
+    margin-top: 3%;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 1px 10px 30px  rgb(180, 182, 180);
+}
+#main #ofertas{
+    margin-left: 5%;
+    margin-top: 2%;
+}
+#cards{
+    width: 20%;
+    text-align: center;
+    margin: 2%;
+    display: inline-block; 
+    padding: .8%;
+    cursor: pointer;
+}
+
+#cards:hover{
+    border-radius: 5px;
+    box-shadow: 1px 5px 30px  rgb(180, 182, 180);
+    transition-duration: 1s;
+}
+ #dcto p{
+    text-align: left;
+    margin-left: 8%;
+    margin-top: 2%;
+    margin-right: 55%;
+    border-radius: 10px;
+    padding: 2%;
+    color: rgb(99, 3, 99);
+    background: rgba(172, 13, 172, 0.51);
+}
+ 
+#cards img{
+    max-width: 80%;
+    height: 20vh;
+}
+h5 #orig{
+    text-decoration: line-through;
+    color: rgba(156, 154, 154, 0.76);
+    font-weight:lighter;
+}
+#cards #nameP{
+    font-size: .9em;
+    margin: 2%;
+}
+#cards button{
+    width: 100%;
+    margin-top: 25%;
+    border-radius: 4px;
+    border: none;
+    padding: 4%;
+    background-color: rgb(66, 202, 93);
+}
+a button {
+    text-decoration: none;
+    color: white;
+}
+a button:hover{
+    text-decoration: none;
+    color: white;
+}
+/* ================Cards section========== */
+#section{
+    width: 80%;
+    margin: auto;
+    padding: .2%;
+    margin-top: 3%;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 1px 5px 30px  rgb(180, 182, 180);
+}
+#section #popul{
+    margin-left: 5%;
+    margin-top: 2%;
+}
+#cards2{
+    width: 20%;
+    text-align: center;
+    margin: 2%;
+    display: inline-block; 
+    padding: .8%;
+    cursor: pointer;
+}
+#cards2:hover{
+    border-radius: 5px;
+    box-shadow: 1px 5px 30px  rgb(180, 182, 180);
+    transition-duration: 1s;
+}
+#cards2 img{
+    max-width: 80%;
+    height: auto;
+}
+#cards2 #nameP{
+    font-size: .9em;
+    margin: 2%;
+}
+#cards2 #gramo{
+    font-size: .8em;
+    color: rgb(194, 189, 189);
+    margin-top: 25%;
+    text-align: left;
+    margin-left: 10%;
+}
+#cards2 button{
+    width: 100%;
+    margin-top: 2%;
+    border-radius: 4px;
+    border: none;
+    padding: 4%;
+    background-color: rgb(66, 202, 93);
+}
+/* ==============PopUp detalle================= */
+#popup{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.387);
+    transition: opacity .5s;
+    visibility: hidden;
+    opacity: 0;
+}
+#popup:target{
+    visibility: visible;
+    opacity: 1;
+}
+#body{
+    width: 45%;
+    padding: 2%;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 2px 1px 18px 10px  rgb(210, 213, 210);
+    position: relative;
+    margin: 4.8% 54% auto;
+    transition: all 2s ease-in-out;
+}
+#cerrar{
+    position: absolute;
+    right: 5%;
+    text-decoration: none;
+    color: black;
+    font-size: 1.8em;
+    font-weight: bold;
+    transition: all .5s;
+}
+/* ==============POPUP2 ================ */
+#popup2{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.387);
+    transition: opacity .5s;
+    visibility: hidden;
+    opacity: 0;
+}
+#popup2:target{
+    visibility: visible;
+    opacity: 1;
+}
+#body2{
+    width: 60%;
+    padding: 2%;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 2px 1px 18px 10px  rgb(210, 213, 210);
+    position: relative;
+    margin: 5% auto;
+    transition: all 2s ease-in-out;
+}
+#cerrar{
+    position: absolute;
+    right: 5%;
+    text-decoration: none;
+    color: black;
+    font-size: 1.8em;
+    font-weight: bold;
+    transition: all .5s;
+}
+#productosM{
+    display: inline-block;
+    font-family: 'roboto', sans-serif;
+    font-weight: bolder;
+}
+#modalImg, #modalInfo{
+    display: inline-block;
+}
+#modalImg{
+    height: 20%;
+}
+#modalImg img{
+    position: relative;
+    max-width: 100%;
+    height: auto; 
+}
+#productosM h3::before{
+    content: '$';
+    color: black;
+    font-size: 20px;
+}
+#productosM #iva{
+   font-size: .8em;
+}
+#productosM #peso{
+    font-family: sans-serif;
+}
+#productosM #madurez{
+    background-color: rgba(233, 233, 233, 0.473);
+    border-radius: 5px;
+}
+#cont-select{
+    max-width: 100%;
+    border-radius: 5px;
+    border: 1.5px solid rgba(233, 233, 233, 0.473);
+    /* box-shadow: 2px 1px 40px 3px  rgb(210, 213, 210); */
+    background-color: transparent;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    appearance: none ;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+}
+#cont-select #select{
+   width: 100%;
+   text-align: center;
+   border: none;
+   cursor: pointer;
+   padding: 1% 1.5%;
+   font-size: 1em;
+   color: #999;
+   position: relative;
+}
+#cont-select #select:hover{
+background: #aaf1e279;
+}
+
+#productosM .irCarrito{
+    display: inline-block;
+    /* position: relative; */
+    width: 30%;
+    margin-top: 1%;
+    padding: 1%;
+    border-radius: 4px;
+    border: 2px solid rgb(66, 202, 93);
+    background: white;
+    color: rgb(66, 202, 93);
+    
+}
+#productosM .irCarrito:hover{
+    border: 2px solid rgb(66, 202, 93);
+    background-color: rgb(66, 202, 93);
+    color: white;
+    transition: all .8s ease;
+}
+#cant{
+    display: inline-block;
+    position: relative;
+    margin-top: 2%;
+    border-radius: 5px;
+    box-shadow: 1px 20px 48px 2px  rgb(233, 233, 233);
+    max-width: 30%;
+    text-align: center;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+#cant #cantidad{
+    display: inline-block;
+    max-width: 30%;
+    text-align: center;
+    border: none;
+    font-size: .8em;
+}
+#cant #und{
+    max-width: 20%;
+    text-align: center;
+    border: none;
+    font-size: .8em;
+}
