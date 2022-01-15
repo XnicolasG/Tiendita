@@ -13,6 +13,8 @@ const modalProd = document.getElementById('productosM');
 const getInfo = async () => {
     const resp = await fetch(prod1);
     const info = await resp.json();
+
+    // ======Destructuración de array por medio de forEach
     info.forEach(prod => {
         const { id, nombre, precioUno, precioDos, img, descuento } = prod;
         main.innerHTML += `
@@ -26,6 +28,7 @@ const getInfo = async () => {
         </div>
         `
     });
+    // ====Activar getInfo2()
     getInfo2();
 }
 
@@ -33,6 +36,8 @@ const getInfo = async () => {
 const getInfo2 = async () => {
     const resp = await fetch(prod2);
     const info = await resp.json();
+
+    // ======Destructuración de array por medio de forEach
     info.forEach(prod => {
         const { id, nombre, precio, img, gramo } = prod;
         section.innerHTML += `
@@ -48,17 +53,21 @@ const getInfo2 = async () => {
     });
 }
 
-
+// ===========Generando evento click
 main.addEventListener('click', async (e) =>{
 
-       
+    // encontrar elemento que tenga clase btnA
     if(e.target.classList.contains('btnA')){
+
+        // Atrapando el id del elemento
         const idx = e.target.id;
         
+        // ==== agregando id al link de localhost para obtener info de un producto en especifico
         let res = await fetch (prod1 + idx)
         let data = await res.json();
         console.log(data)
         
+        // ====Destructuración directa de objeto
         let {nombre, img, precioUno, id} = data
             
          modalProd.innerHTML = `
@@ -89,6 +98,7 @@ main.addEventListener('click', async (e) =>{
            
     
     }
+    // ====== Formula para sumar y restar cantidades
     const btnMas = document.getElementById('aumentar');
 const btnMenos = document.getElementById('disminuir');
 const inputCant = document.getElementById('cantidad');
@@ -107,16 +117,20 @@ btnMenos.addEventListener('click', () =>{
 });
 
 
-
+// ===========Generando evento click
 section.addEventListener('click', async (e) =>{
 
-       
+       // encontrar elemento que tenga clase btnA
         if(e.target.classList.contains('btnA')){
+
+            // Atrapando el id del elemento
             const idx = e.target.id;
-            
+         
+            // ==== agregando id al link de localhost para obtener info de un producto en especifico
         let res = await fetch (`${prod2}${idx}`)
         let data = await res.json();
         
+        // ====Destructuración directa de objeto
         let {nombre,precio, img, gramo, id} = data
         
         modalProd.innerHTML = `
@@ -136,6 +150,8 @@ section.addEventListener('click', async (e) =>{
         </div>
                 ` 
     }
+
+    // ====== Formula para sumar y restar cantidades
     const btnMas = document.getElementById('aumentar');
 const btnMenos = document.getElementById('disminuir');
 const inputCant = document.getElementById('cantidad');
@@ -152,5 +168,5 @@ btnMenos.addEventListener('click', () =>{
 })
 })
 
-
+// ======Evento DOMContentLoaded para activar getInfo
 document.addEventListener('DOMContentLoaded', getInfo)
