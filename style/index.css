@@ -106,7 +106,7 @@ h5 #orig{
     font-weight:lighter;
 }
 #cards #nameP{
-    font-size: .9em;
+    font-size: .9rem;
     margin: 2%;
 }
 #cards button{
@@ -157,11 +157,11 @@ a button:hover{
     height: auto;
 }
 #cards2 #nameP{
-    font-size: .9em;
+    font-size: .9rem;
     margin: 2%;
 }
 #cards2 #gramo{
-    font-size: .8em;
+    font-size: .8rem;
     color: rgb(194, 189, 189);
     margin-top: 25%;
     text-align: left;
@@ -206,7 +206,7 @@ a button:hover{
     right: 5%;
     text-decoration: none;
     color: black;
-    font-size: 1.8em;
+    font-size: 1.8rem;
     font-weight: bold;
     transition: all .5s;
 }
@@ -241,7 +241,7 @@ a button:hover{
     right: 5%;
     text-decoration: none;
     color: black;
-    font-size: 1.8em;
+    font-size: 1.8rem;
     font-weight: bold;
     transition: all .5s;
 }
@@ -267,7 +267,7 @@ a button:hover{
     font-size: 20px;
 }
 #productosM #iva{
-   font-size: .8em;
+   font-size: .8rem;
 }
 #productosM #peso{
     font-family: sans-serif;
@@ -294,7 +294,7 @@ a button:hover{
    border: none;
    cursor: pointer;
    padding: 1% 1.5%;
-   font-size: 1em;
+   font-size: 1rem;
    color: #999;
    position: relative;
 }
@@ -334,13 +334,12 @@ background: #aaf1e279;
 #cant #cantidad{
     display: inline-block;
     max-width: 30%;
-    text-align: center;
     border: none;
-    font-size: .8em;
+    font-size: .7rem;
 }
 #cant #und{
     max-width: 20%;
     text-align: center;
     border: none;
-    font-size: .8em;
+    font-size: .8rem;
 }

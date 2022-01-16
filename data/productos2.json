@@ -1,28 +1,28 @@
 {
     "productos2":[
         {
-            "id":1,
+            "id":5,
             "nombre":"San Rafael pechuga de pavo",
             "precio":62.5,
             "img":"../img/pavo.png",
             "gramo":"250 g ($0.25/gr)"
         },
         {
-            "id":2,
+            "id":6,
             "nombre":"Bimbo Pan Blanco Grande",
             "precio":38.9,
             "img":"../img/pan.png",
             "gramo":"680 gr ($0.6/gr)"
         },
         {
-            "id":3,
+            "id":7,
             "nombre":"Mc Cormick Mayonesa",
             "precio":48.5,
             "img":"../img/mayo.png",
             "gramo":"507 gr ($0.1/gr)"
         },
         {
-            "id":4,
+            "id":8,
             "nombre":"Huevos San Juan",
             "precio":37.5,
             "img":"../img/huevos.png",

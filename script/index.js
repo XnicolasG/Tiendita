@@ -1,9 +1,12 @@
+import { getData } from './get.js'
+
 const prod1 = 'http://localhost:4000/productos/';
 const prod2 = 'http://localhost:4001/productos2/';
 
 const main = document.getElementById('main');
 const section = document.getElementById('section');
 const modalCar = document.getElementById('body');
+const detalle = document.getElementById('body2')
 const modalProd = document.getElementById('productosM');
 
 
@@ -53,24 +56,27 @@ const getInfo2 = async () => {
     });
 }
 
+
+let productosCarrito = [];
+
 // ===========Generando evento click
-main.addEventListener('click', async (e) =>{
+main.addEventListener('click', async (e) => {
 
     // encontrar elemento que tenga clase btnA
-    if(e.target.classList.contains('btnA')){
+    if (e.target.classList.contains('btnA')) {
 
         // Atrapando el id del elemento
         const idx = e.target.id;
-        
+
         // ==== agregando id al link de localhost para obtener info de un producto en especifico
-        let res = await fetch (prod1 + idx)
+        let res = await fetch(prod1 + idx)
         let data = await res.json();
         console.log(data)
-        
+
         // ====Destructuración directa de objeto
-        let {nombre, img, precioUno, id} = data
-            
-         modalProd.innerHTML = `
+        let { nombre, img, precioUno, id } = data
+
+        modalProd.innerHTML = `
     <div id="modalImg"><img src=${img} alt=""></div>
     <div id="modalInfo">
         <h2>${nombre}</h2>
@@ -92,47 +98,68 @@ main.addEventListener('click', async (e) =>{
             <input id="cantidad" type="number" value="250" readonly>
             <button id="aumentar" class="btn cant" ">+</button>
         </div>
-        <a id="${id} " class="btn irCarrito" href="">Agregar</a>
+        <a id="${id} " class="btn irCarrito">Agregar</a>
     </div>
-            `   
-           
-    
+            `
+
+
     }
     // ====== Formula para sumar y restar cantidades
     const btnMas = document.getElementById('aumentar');
-const btnMenos = document.getElementById('disminuir');
-const inputCant = document.getElementById('cantidad');
+    const btnMenos = document.getElementById('disminuir');
+    const inputCant = document.getElementById('cantidad');
 
-btnMas.addEventListener('click', () =>{
-    inputCant.value = parseInt(inputCant.value) + 250;
-})
-btnMenos.addEventListener('click', () =>{
-    inputCant.value = parseInt(inputCant.value) - 250;
-    if(inputCant.value <= 0){
-        inputCant.value = 0;
-    }
+   
 
-})
+    btnMas.addEventListener('click', () => {
+        inputCant.value = parseInt(inputCant.value) + 250;
+    })
+
+    btnMenos.addEventListener('click', () => {
+        inputCant.value = parseInt(inputCant.value) - 250;
+        if (inputCant.value <= 0) {
+            inputCant.value = 0;
+        }
+
+    })
+
+
+    detalle.addEventListener('click', async (e) => {
+        const botonIr = e.target.classList.contains('irCarrito');
+        let idA = e.target.id;
+        if (botonIr) {
+            const produ = await getData(prod1);
+            const object = await produ.find(item => item.id === Number(idA))
+            let { id, img, nombre, precio } = object
+
+            
+            agregarDatos(id, img, nombre, precio);
+
+            localStorage.setItem('Carrito', JSON.stringify(productosCarrito))
+
+        }
+    })
 
 });
 
 
+
 // ===========Generando evento click
-section.addEventListener('click', async (e) =>{
+section.addEventListener('click', async (e) => {
 
-       // encontrar elemento que tenga clase btnA
-        if(e.target.classList.contains('btnA')){
+    // encontrar elemento que tenga clase btnA
+    if (e.target.classList.contains('btnA')) {
 
-            // Atrapando el id del elemento
-            const idx = e.target.id;
-         
-            // ==== agregando id al link de localhost para obtener info de un producto en especifico
-        let res = await fetch (`${prod2}${idx}`)
+        // Atrapando el id del elemento
+        const idx = e.target.id;
+
+        // ==== agregando id al link de localhost para obtener info de un producto en especifico
+        let res = await fetch(prod2 + idx)
         let data = await res.json();
-        
+
         // ====Destructuración directa de objeto
-        let {nombre,precio, img, gramo, id} = data
-        
+        let { nombre, precio, img, gramo, id } = data
+        console.log(data);
         modalProd.innerHTML = `
         <div id="modalImg"><img src=${img} alt=""></div>
         <div id="modalInfo">
@@ -146,27 +173,75 @@ section.addEventListener('click', async (e) =>{
             <input id="cantidad" type="number" value="1" readonly>
             <button id="aumentar" class="btn cant" ">+</button>
         </div>
-            <a id="${id}" class="btn irCarrito" href="">Agregar</a>
+            <a id="${id}" class="irCarrito btn" >Agregar</a>
         </div>
-                ` 
+                `
     }
+
+
 
     // ====== Formula para sumar y restar cantidades
     const btnMas = document.getElementById('aumentar');
-const btnMenos = document.getElementById('disminuir');
-const inputCant = document.getElementById('cantidad');
+    const btnMenos = document.getElementById('disminuir');
+    const inputCant = document.getElementById('cantidad');
 
-btnMas.addEventListener('click', () =>{
-    inputCant.value = parseInt(inputCant.value) + 1;
+    btnMas.addEventListener('click', () => {
+        inputCant.value = parseInt(inputCant.value) + 1;
+    })
+    btnMenos.addEventListener('click', () => {
+        inputCant.value = parseInt(inputCant.value) - 1;
+        if (inputCant.value <= 0) {
+            inputCant.value = 0;
+        }
+
+
+    });
+    detalle.addEventListener('click', async (e) => {
+        const botonIr = e.target.classList.contains('irCarrito');
+        let idA = e.target.id;
+        if (botonIr) {
+            const produ = await getData(prod2);
+            const object = await produ.find(item => item.id === Number(idA))
+            let { id, img, nombre, precio } = object
+
+            agregarDatos2(id, img, nombre, precio);
+            localStorage.setItem('Carrito', JSON.stringify(productosCarrito))
+        }
+    })
 })
-btnMenos.addEventListener('click', () =>{
-    inputCant.value = parseInt(inputCant.value) - 1;
-    if(inputCant.value <= 0){
-        inputCant.value = 0;
+
+
+// Agregando a Array productosCarrito
+const agregarDatos = (id, img, nombre, precio) => {
+
+    const existeProducto = productosCarrito.find(producto => producto.id === id);
+    if (existeProducto) {
+        return
+    } else {
+        productosCarrito.unshift({
+            id: id,
+            image: img,
+            name: nombre,
+            price: precio
+
+        })
     }
+}
+const agregarDatos2 = (id, img, nombre, precio) => {
 
-})
-})
+    const existeProducto = productosCarrito.find(producto => producto.id === id);
+    if (existeProducto) {
+        return
+    } else {
+        productosCarrito.unshift({
+            id: id,
+            image: img,
+            name: nombre,
+            price: precio
+
+        })
+    }
+}
 
 // ======Evento DOMContentLoaded para activar getInfo
 document.addEventListener('DOMContentLoaded', getInfo)
