@@ -5,9 +5,10 @@ const prod2 = 'http://localhost:4001/productos2/';
 
 const main = document.getElementById('main');
 const section = document.getElementById('section');
-const modalCar = document.getElementById('body');
+const modalCar = document.getElementById('cont-carrito');
 const detalle = document.getElementById('body2')
 const modalProd = document.getElementById('productosM');
+const carrito = document.getElementById('btnCar')
 
 
 
@@ -74,7 +75,7 @@ main.addEventListener('click', async (e) => {
         console.log(data)
 
         // ====Destructuración directa de objeto
-        let { nombre, img, precioUno, id } = data
+        let { nombre, img, precioUno, id, cantidad } = data
 
         modalProd.innerHTML = `
     <div id="modalImg"><img src=${img} alt=""></div>
@@ -95,7 +96,7 @@ main.addEventListener('click', async (e) => {
             <p>La cantidad esta representada gramos (gr) </p>
         <div id="cant">
             <button id="disminuir" class="btn cant" ">-</button>
-            <input id="cantidad" type="number" value="250" readonly>
+            <input id="cantidad" type="number" value="${cantidad}" readonly>
             <button id="aumentar" class="btn cant" ">+</button>
         </div>
         <a id="${id} " class="btn irCarrito">Agregar</a>
@@ -109,7 +110,7 @@ main.addEventListener('click', async (e) => {
     const btnMenos = document.getElementById('disminuir');
     const inputCant = document.getElementById('cantidad');
 
-   
+
 
     btnMas.addEventListener('click', () => {
         inputCant.value = parseInt(inputCant.value) + 250;
@@ -130,10 +131,11 @@ main.addEventListener('click', async (e) => {
         if (botonIr) {
             const produ = await getData(prod1);
             const object = await produ.find(item => item.id === Number(idA))
-            let { id, img, nombre, precio } = object
 
-            
-            agregarDatos(id, img, nombre, precio);
+            let {img, nombre, precioUno, id, cantidad} = object
+
+
+            agregarDatos(id, img, nombre, precioUno, cantidad);
 
             localStorage.setItem('Carrito', JSON.stringify(productosCarrito))
 
@@ -158,7 +160,7 @@ section.addEventListener('click', async (e) => {
         let data = await res.json();
 
         // ====Destructuración directa de objeto
-        let { nombre, precio, img, gramo, id } = data
+        let { nombre, precio, img, gramo, id, cantidad } = data
         console.log(data);
         modalProd.innerHTML = `
         <div id="modalImg"><img src=${img} alt=""></div>
@@ -170,7 +172,7 @@ section.addEventListener('click', async (e) => {
             <p>La cantidad esta representada en numero de unidades </p>
             <div id="cant">
             <button id="disminuir" class="btn cant" ">-</button>
-            <input id="cantidad" type="number" value="1" readonly>
+            <input id="cantidad" type="number" value="${cantidad}" readonly>
             <button id="aumentar" class="btn cant" ">+</button>
         </div>
             <a id="${id}" class="irCarrito btn" >Agregar</a>
@@ -193,7 +195,7 @@ section.addEventListener('click', async (e) => {
         if (inputCant.value <= 0) {
             inputCant.value = 0;
         }
-
+        console.log(cantidad);
 
     });
     detalle.addEventListener('click', async (e) => {
@@ -202,17 +204,18 @@ section.addEventListener('click', async (e) => {
         if (botonIr) {
             const produ = await getData(prod2);
             const object = await produ.find(item => item.id === Number(idA))
-            let { id, img, nombre, precio } = object
+            let { id, img, nombre, precio, cantidad } = object
 
-            agregarDatos2(id, img, nombre, precio);
+
+            agregarDatos2(id, img, nombre, precio, cantidad);
             localStorage.setItem('Carrito', JSON.stringify(productosCarrito))
         }
     })
 })
 
 
-// Agregando a Array productosCarrito
-const agregarDatos = (id, img, nombre, precio) => {
+// Agregando a Array productosCarrito para productos de archivo productos1.json
+const agregarDatos = (id, img, nombre, precioUno, cantidad) => {
 
     const existeProducto = productosCarrito.find(producto => producto.id === id);
     if (existeProducto) {
@@ -222,12 +225,14 @@ const agregarDatos = (id, img, nombre, precio) => {
             id: id,
             image: img,
             name: nombre,
-            price: precio
+            price: precioUno,
+            quantity: cantidad
 
         })
     }
 }
-const agregarDatos2 = (id, img, nombre, precio) => {
+// Agregando a Array productosCarrito para productos de archivo productos2.json
+const agregarDatos2 = (id, img, nombre, precio, cantidad) => {
 
     const existeProducto = productosCarrito.find(producto => producto.id === id);
     if (existeProducto) {
@@ -237,11 +242,57 @@ const agregarDatos2 = (id, img, nombre, precio) => {
             id: id,
             image: img,
             name: nombre,
-            price: precio
+            price: precio,
+            quantity: cantidad
 
         })
     }
+
 }
+
+let coleccion = [];
+
+const getLocal = () => {
+    const print = JSON.parse(localStorage.getItem('Carrito'));
+    print.forEach(element => {
+        const { id, image, name, price } = element
+        coleccion.push({
+            id: id,
+            image: image,
+            name: name,
+            price: price
+        })
+
+        traerCol(id, image, name, price);
+    });
+    
+}
+    const traerCol = (id, image, name, price) =>{
+
+        if(coleccion.hasOwnProperty(id)){
+            return
+        }else{
+                modalCar.innerHTML += `
+            <li class="card" style="width: 18rem;">
+                <div class="card-body">
+                <img src=${image} class="card-img-top" style="width: 30%;" alt="...">
+                <h5 class="card-title">${name}</h5>
+         
+                <h5 class="card-title">USD$ ${price}</h5>
+                <a href="#" class="btn btn-outline-dark" style="background-color: #FFFF;">Return</a>
+                </div>
+            </li>
+            `
+        }
+        }
+    // }
+
+
+
+
+carrito.addEventListener('click', () => {
+    getLocal();
+})
 
 // ======Evento DOMContentLoaded para activar getInfo
 document.addEventListener('DOMContentLoaded', getInfo)
